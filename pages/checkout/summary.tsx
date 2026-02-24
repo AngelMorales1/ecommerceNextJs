@@ -65,11 +65,9 @@ const SummaryPage = () => {
 
                         <Box display='flex' justifyContent='space-between'>
                             <Typography variant='subtitle1'>Dirección de entrega</Typography>
-                            <NextLink href='/checkout/address' passHref>
-                                <Link underline='always'>
-                                    Editar
-                                </Link>
-                            </NextLink>
+                            <Link component={NextLink} href='/checkout/address' underline='always'>
+                                Editar
+                            </Link>
                         </Box>
 
                         
@@ -83,11 +81,9 @@ const SummaryPage = () => {
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='end'>
-                            <NextLink href='/cart' passHref>
-                                <Link underline='always'>
-                                    Editar
-                                </Link>
-                            </NextLink>
+                            <Link component={NextLink} href='/cart' underline='always'>
+                                Editar
+                            </Link>
                         </Box>
 
                         <OrderSummary />

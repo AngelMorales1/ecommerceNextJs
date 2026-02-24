@@ -26,32 +26,24 @@ export const Navbar = () => {
     return (
         <AppBar>
             <Toolbar>
-                <NextLink href='/' passHref>
-                    <Link display='flex' alignItems='center'>
-                        <Typography variant='h6'>Teslo |</Typography>
-                        <Typography sx={{ ml: 0.5 }}>Shop</Typography>
-                    </Link>  
-                </NextLink>
+                <Link component={NextLink} href='/' display='flex' alignItems='center'>
+                    <Typography variant='h6'>Teslo |</Typography>
+                    <Typography sx={{ ml: 0.5 }}>Shop</Typography>
+                </Link>
 
                 <Box flex={ 1 } />
 
                 <Box sx={{ display: isSearchVisible ? 'none' : { xs: 'none', sm: 'block' } }}
                     className="fadeIn">
-                    <NextLink href='/category/men' passHref>
-                        <Link>
-                            <Button color={ asPath === '/category/men' ? 'primary':'info'}>Hombres</Button>
-                        </Link>
-                    </NextLink>
-                    <NextLink href='/category/women' passHref>
-                        <Link>
-                            <Button color={ asPath === '/category/women' ? 'primary':'info'}>Mujeres</Button>
-                        </Link>
-                    </NextLink>
-                    <NextLink href='/category/kid' passHref>
-                        <Link>
-                            <Button color={ asPath === '/category/kid' ? 'primary':'info'}>Niños</Button>
-                        </Link>
-                    </NextLink>
+                    <Link component={NextLink} href='/category/men'>
+                        <Button color={ asPath === '/category/men' ? 'primary':'info'}>Hombres</Button>
+                    </Link>
+                    <Link component={NextLink} href='/category/women'>
+                        <Button color={ asPath === '/category/women' ? 'primary':'info'}>Mujeres</Button>
+                    </Link>
+                    <Link component={NextLink} href='/category/kid'>
+                        <Button color={ asPath === '/category/kid' ? 'primary':'info'}>Niños</Button>
+                    </Link>
                 </Box>
 
 
@@ -104,15 +96,13 @@ export const Navbar = () => {
                     <SearchOutlined />
                 </IconButton>
 
-                <NextLink href="/cart" passHref>
-                    <Link>
-                        <IconButton>
-                            <Badge badgeContent={ numberOfItems > 9 ? '+9': numberOfItems  } color="secondary">
-                                <ShoppingCartOutlined />
-                            </Badge>
-                        </IconButton>
-                    </Link>
-                </NextLink>
+                <Link component={NextLink} href="/cart">
+                    <IconButton>
+                        <Badge badgeContent={ numberOfItems > 9 ? '+9': numberOfItems  } color="secondary">
+                            <ShoppingCartOutlined />
+                        </Badge>
+                    </IconButton>
+                </Link>
 
 
                 <Button onClick={ toggleSideMenu }>

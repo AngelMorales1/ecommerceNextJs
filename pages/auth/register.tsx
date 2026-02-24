@@ -123,14 +123,12 @@ const RegisterPage = () => {
                         </Grid>
 
                         <Grid item xs={12} display='flex' justifyContent='end'>
-                            <NextLink 
+                            <Link 
+                                component={NextLink}
                                 href={ router.query.p ? `/auth/login?p=${ router.query.p }`: '/auth/login' } 
-                                passHref
-                            >
-                                <Link underline='always'>
-                                    ¿Ya tienes cuenta?
-                                </Link>
-                            </NextLink>
+                                underline='always'>
+                                ¿Ya tienes cuenta?
+                            </Link>
                         </Grid>
                     </Grid>
                 </Box>

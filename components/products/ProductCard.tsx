@@ -28,9 +28,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             onMouseLeave={ () => setIsHovered(false) } 
       >
           <Card>
-              <NextLink href={`/product/${ product.slug }`} passHref prefetch={ false }>
-                <Link>
-
+              <Link component={NextLink} href={`/product/${ product.slug }`} prefetch={false}>
                     <CardActionArea>
 
                         {
@@ -52,8 +50,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                         />
 
                     </CardActionArea>
-                </Link>
-              </NextLink>
+              </Link>
               
           </Card>
 
