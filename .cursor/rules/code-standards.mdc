@@ -1,0 +1,26 @@
+---
+description: Estándares de código (nombrado, componentes, estado)
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Estándares de Código
+
+- **Nombrado:** **camelCase** para variables, funciones y métodos.
+  **PascalCase** para componentes, tipos, interfaces y nombres de archivos
+  de componentes (ej. `ProductCard.tsx`). Constantes en **MAYÚSCULAS_SNAKE**
+  solo cuando sean realmente constantes de configuración.
+- **Componentes:** Siempre **funcionales**. Tipar props con una interfaz
+  `Props` (o nombre descriptivo). Preferir `FC<Props>` o
+  `function NombreComponente({ prop1, prop2 }: Props)`.
+- **Estado:** Context para estado global (cart, auth, ui). Reducers en
+  `context/*/nombreReducer.ts`. No introducir Redux. Para datos del servidor,
+  usar SWR (hooks en `hooks/`, ej. `useProducts`).
+- **Estilos:** MUI `sx` o Emotion. CSS modules solo si ya existen en el
+  proyecto (ej. `*.module.css`). No añadir Tailwind ni CSS-in-JS nuevo
+  salvo que se decida migrar.
+- **Exports:** Preferir named exports para componentes y helpers. Index
+  en carpetas (`components/products/index.ts`) para re-exportar.
+- **Interfaces:** Definir en `interfaces/` y re-exportar desde
+  `interfaces/index.ts`. Prefijo `I` para interfaces (ej. `IProduct`,
+  `ICartProduct`) para alinearse con el código existente.

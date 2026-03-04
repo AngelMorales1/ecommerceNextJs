@@ -1,0 +1,25 @@
+---
+description: Convenciones para API routes y capa database
+globs: pages/api/**/*.ts,database/**/*.ts,models/**/*.ts
+alwaysApply: false
+---
+
+# API y Backend
+
+- **API Routes:** Handlers por método (GET/POST/PUT). Siempre conectar y
+  desconectar DB: `await db.connect()` al inicio del flujo de datos,
+  `await db.disconnect()` en todos los caminos (éxito, error, early return).
+  Respuestas tipadas (type `Data` con unión de mensaje o entidad).
+- **Validación:** Validar sesión donde aplique (getSession). Rutas admin:
+  comprobar rol (el middleware ya protege; en API conviene validar de nuevo).
+  IDs de MongoDB con `isValidObjectId` antes de findById/find.
+- **Capa database:** Usar `dbProducts`, `dbOrders`, `dbUsers` desde
+  `database/` en lugar de llamar a los modelos directamente desde API
+  cuando exista la función (ej. getProductBySlug, getOrdersByUser).
+- **Modelos:** Mongoose en `models/`. Esquemas con timestamps. Product debe
+  tener índice de texto (`title`, `tags`) para búsqueda. No exportar
+  esquemas sin usar; reutilizar `mongoose.models.X || model(...)`.
+- **Env:** No hardcodear URLs. Usar `process.env.MONGO_URL`, `HOST_NAME`,
+  `CLOUDINARY_URL`, `PAYPAL_*`, etc. Documentar variables en README o doc.
+- **Errores:** Evitar catch vacío. Devolver códigos HTTP adecuados (400, 401,
+  404, 500) y mensaje en español coherente con el resto del proyecto.

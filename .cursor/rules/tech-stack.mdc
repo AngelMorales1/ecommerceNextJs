@@ -1,0 +1,24 @@
+---
+description: Tech stack del proyecto Next-Teslo (lenguajes, frameworks, librerías)
+alwaysApply: true
+---
+
+# Tech Stack – Next-Teslo
+
+- **Runtime y lenguaje:** Node.js, **TypeScript** (strict donde aplique).
+- **Framework:** **Next.js 13** (Pages Router). No usar App Router salvo que el
+  proyecto migre explícitamente.
+- **UI:** **React 19**. Componentes funcionales únicamente. **Material-UI (MUI) v5**
+  con **Emotion** (@emotion/react, @emotion/styled) para estilos y temas.
+- **Datos en cliente:** **SWR** para fetch/cache; **axios** vía `api/tesloApi.ts`
+  (baseURL `/api`) para llamadas a la API.
+- **Formularios:** **react-hook-form**.
+- **Auth:** **NextAuth** (Credentials + GitHub OAuth), sesión JWT; opcional
+  registro con **jsonwebtoken** y **bcryptjs**.
+- **Backend/DB:** **MongoDB** con **Mongoose**. Capa de acceso en `database/`
+  (db, dbProducts, dbOrders, dbUsers).
+- **Servicios externos:** **Cloudinary** (imágenes admin), **PayPal** (pagos).
+- **Utilidades:** **js-cookie** para cookies; utilidades propias en `utils/`
+  (jwt, validations, currency, countries).
+- **No usar:** Redux u otras librerías de estado global no ya presentes.
+  Mantener estado en Context (cart, auth, ui) y SWR para datos del servidor.

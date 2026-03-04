@@ -1,0 +1,36 @@
+---
+description: Estructura de carpetas y arquitectura del proyecto
+alwaysApply: true
+---
+
+# Contexto del Proyecto – Estructura y Arquitectura
+
+- **Raíz:** Next.js (Pages Router). `middleware.ts` en raíz protege rutas
+  admin y checkout; lógica en `lib/middleware/` (auth, routes, constants).
+- **`pages/`:** Rutas y API. `pages/api/` = backend REST (productos, órdenes,
+  usuarios, auth NextAuth, admin). Páginas por ruta (index, category, cart,
+  checkout, orders, admin). SSR/getServerSideProps donde se usa datos de DB.
+- **`components/`:** UI reutilizable. Subcarpetas por dominio: `ui/`, `cart/`,
+  `products/`, `admin/`, `layouts/` (ShopLayout, AdminLayout, AuthLayout).
+  Índices para re-exportar.
+- **`context/`:** Estado global. `auth/`, `cart/`, `ui/`. Cada uno con
+  Provider, Context, reducer e `index.ts`.
+- **`database/`:** Capa de acceso a MongoDB. `db.ts` (connect/disconnect),
+  `dbProducts`, `dbOrders`, `dbUsers`, `constants`, `seed-data`. Los API
+  routes y algunas páginas SSR usan estos módulos; no usar Mongoose directo
+  en componentes.
+- **`api/`:** Cliente HTTP. `tesloApi.ts` (axios baseURL `/api`), exportado
+  en `api/index.ts`. Usar este cliente para llamar a las API desde el front.
+- **`models/`:** Esquemas Mongoose (User, Product, Order). Solo usados en
+  backend y en `database/`.
+- **`interfaces/`:** Tipos e interfaces TypeScript compartidos (productos,
+  orden, usuario, cart, paypal, etc.). Un archivo por dominio + `index.ts`.
+- **`utils/`:** Helpers (jwt, validations, currency, countries).
+- **`hooks/`:** Custom hooks (ej. useProducts). No confundir con `hooks/`
+  de Next.js; este proyecto usa `hooks/` para hooks de React.
+- **`lib/`:** Lógica compartida no-UI. Actualmente `lib/middleware/` para
+  auth y rutas protegidas.
+- **`themes/`:** Tema MUI (light-theme).
+- **`styles/`:** Estilos globales (globals.css).
+- **`doc/`:** Documentación (ej. backend.md). Mantener documentación
+  técnica aquí.
